@@ -1,0 +1,36 @@
+sap.ui.define([
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (Controller, Filter, FilterOperator) {
+    "use strict";
+
+    // Make sure the controller name matches the view's controllerName property
+    return Controller.extend("com.northwind.products.productlist.controller.ProductList", {
+
+        _bFilterApplied: false, // Flag to track filter state
+
+        onInit: function () {
+            // Initialization code if needed
+        },
+
+        onFilterPress: function () {
+            var oList = this.byId("list");
+            var oBinding = oList.getBinding("items");
+            var oFilterButton = this.byId("filterButton");
+
+            if (this._bFilterApplied) {
+                // Clear the filter
+                oBinding.filter([]); // Pass empty array to clear
+                this._bFilterApplied = false;
+                oFilterButton.setText("Filter for 'Beverages'");
+            } else {
+                // Filter by CategoryID = 1 (Beverages)
+                var oFilter = new Filter("CategoryID", FilterOperator.EQ, 1);
+                oBinding.filter(oFilter); // Apply the filter
+                this._bFilterApplied = true;
+                oFilterButton.setText("Clear Filter");
+            }
+        }
+    });
+});

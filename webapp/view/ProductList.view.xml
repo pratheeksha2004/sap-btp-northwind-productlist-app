@@ -1,0 +1,39 @@
+<mvc:View
+    controllerName="com.northwind.products.productlist.controller.ProductList"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+
+    <!-- Use a unique ID for the Page -->
+    <Page id="productListPage" title="{i18n>title}">
+        <content>
+            <!-- Button to trigger the filter -->
+            <Button
+                id="filterButton"
+                text="Toggle 'Beverages' Filter"
+                press=".onFilterPress" /> <!-- Connects to controller handler -->
+
+            <!-- List of Products -->
+            <List
+                id="list"
+                headerText="Products"
+                items="{
+                    path: '/Products',
+                    parameters: {
+                        $expand: 'Category'  
+                    }
+                }"
+                growing="true"
+                growingThreshold="20">
+                <items>
+                    <!-- Add a static ID for the list item template -->
+                    <StandardListItem
+                        id="productListItem"
+                        title="{ProductName}"
+                        description="{Category/CategoryName}" 
+                        info="{UnitPrice}" />
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>
