@@ -4,16 +4,16 @@
     displayBlock="true"
     xmlns="sap.m">
 
-    <!-- Use a unique ID for the Page -->
+  
     <Page id="productListPage" title="{i18n>title}">
         <content>
-            <!-- Button to trigger the filter -->
+           
             <Button
                 id="filterButton"
                 text="Toggle 'Beverages' Filter"
-                press=".onFilterPress" /> <!-- Connects to controller handler -->
+                press=".onFilterPress" /> 
 
-            <!-- List of Products -->
+          
             <List
                 id="list"
                 headerText="Products"
@@ -26,7 +26,7 @@
                 growing="true"
                 growingThreshold="20">
                 <items>
-                    <!-- Add a static ID for the list item template -->
+                   
                     <StandardListItem
                         id="productListItem"
                         title="{ProductName}"
